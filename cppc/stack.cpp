@@ -11,6 +11,10 @@ public:
 	Stack() { 
 		top = -1; 
 		} 
+	
+	Stack(int x){
+		top = -1;
+	}
 
 bool push(int x) 
 { 
@@ -57,12 +61,11 @@ bool isEmpty()
 
 int main() 
 { 
-	class Stack s; 
+	Stack s; 
 	s.push(10); 
 	s.push(20); 
 	s.push(30); 
 	cout << s.pop() << " Popped from stack\n"; 
-
 	return 0; 
 } 
 
