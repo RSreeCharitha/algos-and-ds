@@ -16,6 +16,17 @@ class sll:
             count+=1
             last = last.next
         return count
+    
+    def __repr__(self):
+        last = self.head
+        s=''
+        while True:
+            if last.next is None:
+                break
+            s+=f'{last.data} -> '
+            last=last.next
+        s+=f'{last.data}'
+        return s
 
     def append(self, node):
         if self.head is None:
@@ -39,7 +50,7 @@ class sll:
                 last = last.next
                 i+=1
             last = last.next
-            print(first.data, last.data)
+            print('inserting between',first.data, last.data)
             first.next=node
             node.next = last
         
@@ -49,7 +60,7 @@ class sll:
         else:
             node.next = self.head
             self.head=node
-    
+    '''  
     def print(self):
         last = self.head
         while True:
@@ -58,6 +69,17 @@ class sll:
             print(last.data,'->',end='')
             last=last.next
         print(last.data)
+    '''
+    def dellast(self):
+        last = self.head
+        if(self.head is not None):
+            while(last.next.next!=None):
+                last=last.next
+            d = last.next
+            print('deleted: ',d.data)
+            last.next=None
+            del d
+
 
 n1 = Node(31)
 l = sll()
@@ -68,9 +90,11 @@ n3  = Node(38)
 n4 = Node(34)
 l.append(n3)
 l.append(n4)
-l.print()
+print(l)
 n5 = Node(4)
 l.insbeg(n5)
-l.print()
-l.inspos(Node(7),2)
-l.print()
+print(l)
+l.inspos(Node(7),4)
+print(l)
+l.dellast()
+print(l)
