@@ -28,7 +28,8 @@ class sll:
         s+=f'{last.data}'
         return s
 
-    def append(self, node):
+    def append(self, x):
+        node = Node(x)
         if self.head is None:
             self.head = node
         else:
@@ -40,7 +41,8 @@ class sll:
                     last= last.next
             last.next=node
         
-    def inspos(self,node,pos):
+    def inspos(self,x,pos):
+        node = Node(x)
         last = self.head
         first = self.head
         if pos>1 and pos<len(self):
@@ -50,11 +52,12 @@ class sll:
                 last = last.next
                 i+=1
             last = last.next
-            print('inserting between',first.data, last.data)
+            print(f'inserting {x} between {first.data}, {last.data}')
             first.next=node
             node.next = last
         
-    def insbeg(self,node):
+    def insbeg(self,x):
+        node = Node(x)
         if self.head is None:
             self.head = node
         else:
@@ -81,20 +84,15 @@ class sll:
             del d
 
 
-n1 = Node(31)
 l = sll()
-l.append(n1)
-n2 = Node(54)
-l.append(n2)
-n3  = Node(38)
-n4 = Node(34)
-l.append(n3)
-l.append(n4)
+l.append(2)
+l.append(3)
+l.append(5)
+l.append(6)
 print(l)
-n5 = Node(4)
-l.insbeg(n5)
+l.insbeg(7)
 print(l)
-l.inspos(Node(7),4)
+l.inspos(8,4)
 print(l)
 l.dellast()
 print(l)
