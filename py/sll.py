@@ -20,12 +20,15 @@ class sll:
     def __repr__(self):
         last = self.head
         s=''
+        if last==None:
+            return 'Empty list'
         while True:
             if last.next is None:
                 break
             s+=f'{last.data} -> '
             last=last.next
         s+=f'{last.data}'
+        s = 'List: '+s
         return s
 
     def append(self, x):
@@ -75,24 +78,34 @@ class sll:
     '''
     def dellast(self):
         last = self.head
+        if self.head ==None:
+            return 0
+        if self.head.next == None: 
+            p = self.head.data
+            self.head = None
+            return p
         if(self.head is not None):
             while(last.next.next!=None):
                 last=last.next
             d = last.next
             print('deleted: ',d.data)
+            p = d.data
             last.next=None
             del d
+            return p
 
 
 l = sll()
 l.append(2)
-l.append(3)
-l.append(5)
-l.append(6)
 print(l)
 l.insbeg(7)
 print(l)
 l.inspos(8,4)
 print(l)
-l.dellast()
+a=l.dellast()
+print(a)
+a=l.dellast()
+print(a)
+a=l.dellast()
+print(a)
 print(l)

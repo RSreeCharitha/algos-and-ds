@@ -88,25 +88,21 @@ class sll:
             while(last.next.next!=None):
                 last=last.next
             d = last.next
-            #print('deleted: ',d.data)
             p = d.data
             last.next=None
             del d
             return p
 
 l1 = sll()
-l1.append(1)
-l1.append(1)
-l1.append(1)
-l1.append(1)
+l1.append(6)
+l1.append(3)
 print(l1)
 l2=sll()
-l2.insbeg(2)
-l2.insbeg(2)
+l2.insbeg(7)
 print(l2)
 
 l3=sll()
-carry=0
+c=0
 len1 = len(l1)
 len2=len(l2)
 if len1>=len2:
@@ -114,12 +110,8 @@ if len1>=len2:
     while(i<=len1+2):
         a = l1.dellast()
         b = l2.dellast()
-        c=carry
-        #print(a,b,c)
         su = (a+b+c)%10
-        #print('sum',su)
-        carry=(a+b+c)//10
-        #print('car',carry)
+        c=(a+b+c)//10
         l3.insbeg(su)
         i+=1
         len1=len(l1)
