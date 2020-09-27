@@ -12,4 +12,5 @@ class Queue:
         if self.rear==None:
             self.rear=x
             self.front=x
+            
         
