@@ -1,3 +1,4 @@
+#!/bin/env python3
 class Node:
     def __init__(self, data):
         self.data=data
@@ -95,17 +96,29 @@ class sll:
             return p
 
 
-l = sll()
-l.append(2)
-print(l)
-l.insbeg(7)
-print(l)
-l.inspos(8,4)
-print(l)
-a=l.dellast()
-print(a)
-a=l.dellast()
-print(a)
-a=l.dellast()
-print(a)
-print(l)
+def merge(l1,l2):
+    temp=None
+    if l1 is None:
+        return 12
+    if l2 is None:
+        return l1
+    if l1.data >=l2.data:
+        temp = l2
+        temp.next = merge(l1,l2.next)
+    else:
+        temp=l1
+        temp.next = merge(l1.next,l2)
+    return temp
+
+l1 = sll()
+l1.append(2)
+l1.append(3)
+l1.append(6)
+l1.append(10)
+l2=sll()
+l2.append(1)
+l2.append(4)
+l2.append(7)
+l3=sll()
+l3.head=merge(l1.head,l2.head)
+print(l3)
