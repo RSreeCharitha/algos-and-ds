@@ -1,103 +1,110 @@
 #include<iostream>
-#include <queue> 
-#define MAX 100
+#include<queue>
 using namespace std;
-
-class Tree{
+class Node{
     public:
     int data;
-    Tree *left;
-    Tree *right;
-    Tree* head;
-    Tree(){
-        head=NULL;
-    }
-    Tree* create(){
-        Tree *p, *t;
-        
-
-    }
-
-    void preorder(Tree* t){
-
-    }
-
-    void inorder(Tree* t){
-        
-    }
-
-    void postorder(Tree* t){
-        
-    }
-
-    void levelorder(Tree* t){
-
-    }
-
-    void height(Tree* t){
-
-    }
+    Node *right;
+    Node *left;
 
 };
-
-class Queue{
-    int front;
-    int rear;
-    int l;
+class Tree{
+    Node* root;
     public:
-        Tree* a[MAX];
+    void create(){
+        Node *p, *t;
+        int x;
+        queue<Node*> q;
+        cout<<"Root value: ";
+        cin>>x;
+        root = (Node*)malloc(sizeof(Node));
+        root->data = x;
+        root->right=root->left=NULL;
+        q.push(root);
 
-    Queue(){
-        rear=-1;
-        front=-1;
-        l=0;
+        while(!q.empty()){
+            p = q.front();
+            q.pop();
+            cout<<"Enter left child of "<<p->data<<": ";
+            cin>>x;
+            if (x!=-1){
+                t = (Node*)malloc(sizeof(Node));
+            t->data = x;
+            t->left=t->right=NULL;
+            p->left=t;
+            q.push(t);
+            }
 
-    }
-    void enqueue(Tree* x){    
-        if(!isFull()){
-            a[++rear]=x;
-            l++;
+            cout<<"Enter right child of "<<p->data<<": ";
+            cin>>x;
+            if (x!=-1){
+                t = (Node*)malloc(sizeof(Node));
+            t->data = x;
+            t->left=t->right=NULL;
+            p->right=t;
+            q.push(t);
         }
     }
-
-    Tree* dequeue(){
-        if(!isEmpty()) {
-            Tree* x = a[front];
-            front++;
-            l--;
-            return x;
+    }
+    void preorder(){
+        preorder(root);
+    }
+     void inorder(){
+        inorder(root);
+    }
+     void postorder(){
+        postorder(root);
+    }
+    void preorder(Node *t){
+        if(t){
+            cout<<t->data<<" ";
+            preorder(t->left);
+            preorder(t->right);
         }
     }
-
-    int isEmpty(){
-        if(front>rear){
-            return 1;
+    void inorder(Node *t){
+        if(t){
+            inorder(t->left);
+            cout<<t->data<<" ";
+            inorder(t->right);
         }
-        return 0;
     }
-
-    int isFull(){
-        if(rear==MAX-1){
-            return 1;
+    void postorder(Node *t){
+        if(t){
+            postorder(t->left);
+            postorder(t->right);
+            cout<<t->data<<" ";
         }
-        return 0;
     }
-
-    void print(){
-        cout<<"Printing: ";
-        for(int i=front+1;i<=rear;i++){
-            cout<<a[i]<<" ";
+    void levelorder(){
+        Node *p=root;
+        queue <Node*> q;
+        cout<<p->data<<" ";
+        q.push(p);
+        while(!q.empty()){
+            p=q.front();
+            q.pop();
+            if(p->left){
+                cout<<p->left->data<<" ";
+                q.push(p->left);
+            }
+            if(p->right){
+                cout<<p->right->data<<" ";
+                q.push(p->right);
+            }
         }
-        cout<<endl;
     }
+   
 };
 
 int main(){
-    Queue q;
     Tree t;
-    int x;
-    cout<<"Enter root value:";
-    cin>>x;
-    
+    t.create();
+    cout<<"Preorder: ";
+    t.preorder();
+    cout<<"\nInorder: ";
+    t.inorder();
+    cout<<"\nLevelorder: ";
+    t.levelorder();
     
 }
