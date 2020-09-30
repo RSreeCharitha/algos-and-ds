@@ -1,27 +1,22 @@
 #include<iostream>
+#include<stack>
 using namespace std;
 int main(){
-	string s;
-	getline(cin, s); 
-	
-	int sp=s.length();
-	int ep=sp;
-	int l =sp;
-	while(l>0){
-		
-		if(s[l]==' '){
-			sp=l+1;
-			for(int j=sp;j<ep;j++){
-				cout<<s[j];
-			}
-			ep=sp;
-			cout<<" ";
-		}		
-		
-		l--;
+	stack <char> s;
+	string a="aab";
+	char top=a[0];
+	int count=a.length();
+	for(int i=0;i<a.length();i++){
+		if(a[i]==top){
+			s.push(a[i]);
+		}
+		else{
+			cout<<a[i]<<endl;
+			int l = s.size();
+			cout<<l;
+			if (l!=1) count++;
+			while(!s.empty()) s.pop();
+		}
 	}
-	sp=0;
-	for(int j=sp;j<ep-1;j++){
-				cout<<s[j];
-			}
+	cout<<count;
 }
