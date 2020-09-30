@@ -10,6 +10,7 @@ class Node{
 };
 class Tree{
     Node* root;
+    int count=0;
     public:
     void create(){
         Node *p, *t;
@@ -69,6 +70,13 @@ class Tree{
             inorder(t->right);
         }
     }
+    /*void inorder(Node *t){
+        if(t){
+            inorder(t->left);
+            cout<<t->data<<" ";
+            inorder(t->right);
+        }
+    }*/
     void postorder(Node *t){
         if(t){
             postorder(t->left);
@@ -93,6 +101,27 @@ class Tree{
                 q.push(p->right);
             }
         }
+    }
+    int count(Node* k){
+        int x,y;
+        if(k!=NULL){
+            x=count(k->left);
+            y=count(k->right);
+            return x+y+1;
+        }
+        return 0;
+    }
+    int internalCount(Node* k){
+        int x,y;
+        if(k!=NULL){
+            x=internalCount(k->left);
+            y=internalCount(k->right);
+            if(k->right && k->left)
+                return x+y+1;
+            else
+            return x+y;
+        }
+        return 0;
     }
    
 };
