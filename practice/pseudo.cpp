@@ -1,31 +1,16 @@
 #include<iostream>
 using namespace std;
+
+void change(int a[],int l){
+    for(int i=0;i<l;i++)
+        a[i]++;
+}
+
 int main(){
-    int n,d;
-    cin>>n;
-    /*int *a = new int[n];
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-    }
-    cin>>d;
-    for(int i=0;i<n;i++){
-        if(i!=d-1){
-            cout<<a[i]<<" ";
-        }
-    }*/
-    int *a = (int *)calloc(sizeof(int),n);
-    if(a==NULL){
-        cout<<"Lot of memory";
-        exit(0);
-    }
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-    }
-    cin>>d;
-    for(int i=0;i<n;i++){
-        if(i!=d-1){
-            cout<<a[i]<<" ";
-        }
-    }
+    int a[]={1,2,3,4};
+    change(a,4);
+    for(int i=0;i<4;i++)
+        cout<<a[i]<<endl;
+
 
 }
