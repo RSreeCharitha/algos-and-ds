@@ -1,81 +1,58 @@
-'''
-t = int(input())
-count=1
-for i in range(t):
-    n = int(input())
-    b = list(map(int, input().split()))
-    m = b[0]
-    for j in range(1,n):
-        if(m<b[j]):
-            count+=1
-            m=b[j]
-    print(count)
---------------------------------------------
-
-n,m = list(map(int, input().split()))
-l = []
+n=int(input())
+im=[]
 for i in range(n):
-    l.append([0]*m)
+        im.append(input().split())
 
-for i in range(n):
-    for j in range(m):
-        l[i][j] = int(input())
-
-print(l)
------------------------------
-
-
-t = int(input())
-
-for _ in range(t):
-    s = input()
-    d = {}
-    for i in s:
-        d[i]=d.get(i,0)+1
-        if d[i]>=1:
-            print(i,end=' ')
+#im=[['metals', '200', '3000'], ['fertilizers', '50', '2000'], ['computers', '100', '1000']]
+hm=[]
+total=0
+m=int(input()) 
+for i in range(m):
+    hm.append(input().split())
+if n==m:
+    for i in range(m):
+        hf = hm[i][0]
+        req = int(im[i][1])
+        impr = int(im[i][2])
+        hpri = int(hm[i][2])
+        hav = int(hm[i][1])
+        if hav>=req:
+            total+=req*hpri
         else:
-            print(-1,end=' ')
-
-
----------------------------------------------------
-
-
-n = input()
-e=0
-o=0
-for i in range(len(n)):
-    if (i+1)%2==0:
-        #print(n[i])
-        e+=int(n[i])
-    else:
-        #print(n[i])
-        o+=int(n[i])
-print(abs(e-o))
-
--------------------------------------------
-
-
-s = input('Enter String: ')
-kev=0
-stu=0
-l=len(s)
-# start with vowels
-for i in range(l):
-    if (s[i]=='a' or s[i]=='e' or s[i]=='i' or s[i]=='o' or s[i]=='u'): #s[i]=a
-        for j in range(i+1,l+1): #a, an, ana
-            kev+=
-# start with consonants
-for i in range(l):
-    if (s[i]!='a' and s[i]!='e' and s[i]!='i' and s[i]!='o' and s[i]!='u'): #suppose s[i] = b
-        for j in range(i+1,l+1): #b,ba,ban...
-            
-            stu.append(s[i:j])
-if(len(stu)>len(kev)):
-    print(f'Stuart {len(stu)}')
-elif(len(stu)<len(kev)) :
-    print(f'Kevin {len(kev)}')
+            total+=hav*hpri
+            req-=hav
+            total+=req*impr
+    print(total)
 else:
-    print('Draw')
-    
-'''
+
+    hlist = []
+    ilist=[]
+
+    for i in im:
+        ilist.append(i[0]);
+    for i in hm:
+        hlist.append(i[0]);
+
+    ma = list(set(ilist)-set(hlist))
+
+    for i in im:
+        if i[0]==ma[0]:
+            total+=int(i[1])*int(i[2])
+
+
+
+    for i in range(m):
+        hf = hm[i][0]
+        req = int(im[i][1])
+        impr = int(im[i][2])
+        hpri = int(hm[i][2])
+        hav = int(hm[i][1])
+        if hav>=req:
+            total+=req*hpri
+        else:
+            total+=hav*hpri
+            req-=hav
+            total+=req*impr
+
+
+    print(total)
